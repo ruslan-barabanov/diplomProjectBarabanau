@@ -12,27 +12,24 @@ import java.util.concurrent.TimeUnit;
 
 
 public class BaseTest {
-    String PATH_TO_PROPERTIES = "src/test/resources/conf.properties";
-    public WebDriver driver;
 
+    public WebDriver driver;
+    PathProperties pathProperties = new PathProperties();
     private Properties properties = new Properties();
 
     @BeforeMethod
     public void startTest() throws IOException {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-
-        FileInputStream fileInputStream = new FileInputStream(PATH_TO_PROPERTIES);
+        FileInputStream fileInputStream = new FileInputStream(pathProperties.getPATH_TO_PROPERTIES());
         properties.load(fileInputStream);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get(properties.getProperty("site"));
-
     }
 
     @AfterMethod
     public void afterClass() {
         driver.quit();
     }
-
 }
