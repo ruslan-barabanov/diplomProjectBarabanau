@@ -1,12 +1,18 @@
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 public class PathProperties {
 
-    String PATH_TO_PROPERTIES="src/test/resources/conf.properties";
+    public static Properties readFile() {
+        Properties properties = new Properties();
 
-    public String getPATH_TO_PROPERTIES() {
-        return PATH_TO_PROPERTIES;
-    }
-
-    public void setPATH_TO_PROPERTIES(String PATH_TO_PROPERTIES) {
-        this.PATH_TO_PROPERTIES = PATH_TO_PROPERTIES;
+        try (InputStream input = new FileInputStream("src/test/resources/conf.properties")) {
+            properties.load(input);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return properties;
     }
 }
