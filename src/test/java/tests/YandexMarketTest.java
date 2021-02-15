@@ -1,5 +1,11 @@
+package tests;
 
 import org.testng.annotations.Test;
+import pages.YandexLoginPage;
+import pages.YandexMarketHomeAuthorizedPage;
+import pages.YandexMarketHomePage;
+import utils.PathsProperties;
+
 import java.util.*;
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertTrue;
