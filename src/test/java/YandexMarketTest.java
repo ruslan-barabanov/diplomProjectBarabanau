@@ -1,14 +1,12 @@
 
 import org.testng.annotations.Test;
-
 import java.util.*;
-
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertTrue;
 
 public class YandexMarketTest extends BaseTest {
 
-    private final Properties properties = PathProperties.readFile();
+    private final Properties properties = PathsProperties.readFile();
     private final String login = properties.getProperty("login");
     private final String password = properties.getProperty("password");
     private List<String> displayedCategoriesLinks = new ArrayList<>();
@@ -39,7 +37,6 @@ public class YandexMarketTest extends BaseTest {
 
     @Test(description = "Получаем спсиок видимых категории и открываем страницу случайной категории")
     public void getAllDisplayedCategories() {
-        switchToTheRightHandle();
         YandexMarketHomeAuthorizedPage authorizedHomePage = new YandexMarketHomeAuthorizedPage(driver);
         displayedCategoriesLinks = authorizedHomePage.getDisplayedCategoryLinks();
         assertTrue(displayedCategoriesLinks.size() > 0);

@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class PathProperties {
+public class PathsProperties {
 
     public static Properties readFile() {
         Properties properties = new Properties();

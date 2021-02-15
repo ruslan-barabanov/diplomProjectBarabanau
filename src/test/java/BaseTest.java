@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 public class BaseTest {
 
     public WebDriver driver;
-    private final Properties properties = PathProperties.readFile();
+    private final Properties properties = PathsProperties.readFile();
     private final String site = properties.getProperty("site");
 
     @BeforeMethod
