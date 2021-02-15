@@ -7,6 +7,7 @@ import pages.YandexMarketHomePage;
 import utils.PathsProperties;
 
 import java.util.*;
+
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertTrue;
 
@@ -50,6 +51,15 @@ public class YandexMarketTest extends BaseTest {
         String randomCategoryLink = displayedCategoriesLinks.get(randomInt);
         driver.get(randomCategoryLink);
         assertEquals(driver.getCurrentUrl(), randomCategoryLink);
+    }
+
+    @Test(description = "Заказываем игрушки в Минск")
+    public void getElectronic() {
+        YandexMarketHomePage homePage = new YandexMarketHomePage(driver);
+        homePage.clickElectronicButton();
+        homePage.clickGameAndGamesButton();
+        String minsk = homePage.findСityMinsk();
+        assertEquals(minsk, "В Минск мы пока не доставляем");
     }
 
     private void switchToTheRightHandle() {
