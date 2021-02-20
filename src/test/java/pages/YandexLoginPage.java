@@ -38,5 +38,4 @@ public class YandexLoginPage extends PageObject {
     public void clickSignInButton() {
         signInButton.click();
     }
-
 }

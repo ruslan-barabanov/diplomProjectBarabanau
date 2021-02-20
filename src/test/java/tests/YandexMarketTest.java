@@ -1,12 +1,16 @@
 package tests;
 
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.YandexLoginPage;
 import pages.YandexMarketHomeAuthorizedPage;
 import pages.YandexMarketHomePage;
 import pages.YandexMarketOrder;
 import utils.PathsProperties;
+
 import java.util.*;
+
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertTrue;
 
@@ -71,6 +75,20 @@ public class YandexMarketTest extends BaseTest {
         order.goToCart();
         String actualQuantity = order.quantityOfGoods();
         assertEquals("1", actualQuantity);
+    }
+
+    @Test(description = "Находим самый дорогой айфон в Москве")
+    public void findTheMostExpensivePhone() {
+        YandexMarketHomePage homePage = new YandexMarketHomePage(driver);
+        homePage.searchAiphone();
+        homePage.clickSubmitButton();
+        Set<String> webElementsList = new HashSet<>();
+        List<WebElement> list = homePage.allIphonePrices();
+        for (WebElement element : list) {
+            webElementsList.add(element.getText());
+        }
+        System.out.println(Collections.max(webElementsList));
+        Assert.assertNotNull(webElementsList);
     }
 
     private void switchToTheRightHandle() {
