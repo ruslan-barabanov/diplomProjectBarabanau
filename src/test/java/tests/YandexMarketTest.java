@@ -77,6 +77,24 @@ public class YandexMarketTest extends BaseTest {
         assertEquals("1", actualQuantity);
     }
 
+    @Test(description = "Заказываем компьютер в Москве")
+    public void orderAComputerInMoscow5Phones() {
+        YandexMarketHomePage homePage = new YandexMarketHomePage(driver);
+        YandexMarketOrder order = new YandexMarketOrder(driver);
+        homePage.clickElectronicButton();
+        homePage.choosingALaptop();
+        switchToTheRightHandle();
+        order.addToCard();
+        int i = 1;
+        while (i < 5){
+            order.addGoods();
+            i++;
+        }
+            order.goToCart();
+        String actualQuantity = order.quantityOfGoods();
+        assertEquals("5", actualQuantity);
+    }
+
     @Test(description = "Находим самый дорогой айфон в Москве")
     public void findTheMostExpensivePhone() {
         YandexMarketHomePage homePage = new YandexMarketHomePage(driver);
