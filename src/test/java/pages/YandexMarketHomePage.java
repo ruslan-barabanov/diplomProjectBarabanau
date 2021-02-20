@@ -31,11 +31,21 @@ public class YandexMarketHomePage extends PageObject {
     @FindBy(xpath = "//span[@data-autotest-currency='₽']")
     private WebElement prices;
 
+    @FindBy(xpath = "//span[contains(text(),'Игрова" +
+            "я приставка')]")
+    private WebElement sony;
+
+    public void clickSony5(){
+        sony.click();
+    }
     public List<WebElement> allIphonePrices(){
         return driver.findElements(By.xpath("//span[@data-autotest-currency='₽']"));
     }
     public void searchAiphone(){
         searchGeneral.sendKeys("айфон");
+    }
+    public void searchSony5(){
+        searchGeneral.sendKeys("Sony PlayStation");
     }
 
     public void clickSubmitButton(){

@@ -3,12 +3,10 @@ package tests;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.YandexLoginPage;
-import pages.YandexMarketHomeAuthorizedPage;
-import pages.YandexMarketHomePage;
-import pages.YandexMarketOrder;
+import pages.*;
 import utils.PathsProperties;
-
+import utils.ScreenProperties;
+import java.io.IOException;
 import java.util.*;
 
 import static org.testng.AssertJUnit.assertEquals;
@@ -86,11 +84,11 @@ public class YandexMarketTest extends BaseTest {
         switchToTheRightHandle();
         order.addToCard();
         int i = 1;
-        while (i < 5){
+        while (i < 5) {
             order.addGoods();
             i++;
         }
-            order.goToCart();
+        order.goToCart();
         String actualQuantity = order.quantityOfGoods();
         assertEquals("5", actualQuantity);
     }
@@ -107,6 +105,21 @@ public class YandexMarketTest extends BaseTest {
         }
         System.out.println(Collections.max(webElementsList));
         Assert.assertNotNull(webElementsList);
+    }
+
+    @Test(description = "Находим sony playstation 5 и делаем скрин")
+    public void findPlaystation5() throws IOException {
+        YandexPlaystationPage playstationPage = new YandexPlaystationPage(driver);
+        YandexMarketHomePage homePage = new YandexMarketHomePage(driver);
+        homePage.searchSony5();
+        homePage.clickSubmitButton();
+        homePage.clickSony5();
+        switchToTheRightHandle();
+        playstationPage.sonyPictureClick();
+        ScreenProperties.makeScreenPage(driver);
+        String actualName = playstationPage.getNameProduct();
+        String expectedName = "Игровая приставка Sony PlayStation 5 825 Гб";
+        assertEquals(expectedName, actualName);
     }
 
     private void switchToTheRightHandle() {
