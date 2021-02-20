@@ -77,7 +77,7 @@ public class YandexMarketTest extends BaseTest {
         assertEquals("1", actualQuantity);
     }
 
-    @Test(description = "Заказываем компьютер в Москве")
+    @Test(description = "Заказываем компьютер в Москве 5 штук")
     public void orderAComputerInMoscow5Phones() {
         YandexMarketHomePage homePage = new YandexMarketHomePage(driver);
         YandexMarketOrder order = new YandexMarketOrder(driver);
