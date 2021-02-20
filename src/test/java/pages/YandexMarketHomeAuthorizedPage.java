@@ -33,5 +33,4 @@ public class YandexMarketHomeAuthorizedPage extends PageObject {
         displayedCategories.forEach(e -> categoriesLinks.add(e.findElement(By.cssSelector("a")).getAttribute("href")));
         return categoriesLinks;
     }
-
 }

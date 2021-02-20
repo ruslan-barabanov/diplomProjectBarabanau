@@ -4,10 +4,9 @@ import org.testng.annotations.Test;
 import pages.YandexLoginPage;
 import pages.YandexMarketHomeAuthorizedPage;
 import pages.YandexMarketHomePage;
+import pages.YandexMarketOrder;
 import utils.PathsProperties;
-
 import java.util.*;
-
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertTrue;
 
@@ -42,7 +41,7 @@ public class YandexMarketTest extends BaseTest {
         assertTrue(authorizedHomePage.isAuthorized());
     }
 
-    @Test(description = "Получаем спсиок видимых категории и открываем страницу случайной категории")
+    @Test(description = "Получаем список видимых категории и открываем страницу случайной категории")
     public void getAllDisplayedCategories() {
         YandexMarketHomeAuthorizedPage authorizedHomePage = new YandexMarketHomeAuthorizedPage(driver);
         displayedCategoriesLinks = authorizedHomePage.getDisplayedCategoryLinks();
@@ -53,13 +52,25 @@ public class YandexMarketTest extends BaseTest {
         assertEquals(driver.getCurrentUrl(), randomCategoryLink);
     }
 
-    @Test(description = "Заказываем игрушки в Минск")
-    public void getElectronic() {
+    @Test(description = "Смотрим компьютер в Москве")
+    public void watchComputersInMoscow() {
         YandexMarketHomePage homePage = new YandexMarketHomePage(driver);
         homePage.clickElectronicButton();
-        homePage.clickGameAndGamesButton();
-        String minsk = homePage.findСityMinsk();
-        assertEquals(minsk, "В Минск мы пока не доставляем");
+        String moskau = homePage.findСityMoskau();
+        assertEquals(moskau, "Москва");
+    }
+
+    @Test(description = "Заказываем компьютер в Москве")
+    public void orderAComputerInMoscow() {
+        YandexMarketHomePage homePage = new YandexMarketHomePage(driver);
+        YandexMarketOrder order = new YandexMarketOrder(driver);
+        homePage.clickElectronicButton();
+        homePage.choosingALaptop();
+        switchToTheRightHandle();
+        order.addToCard();
+        order.goToCart();
+        String actualQuantity = order.quantityOfGoods();
+        assertEquals("1", actualQuantity);
     }
 
     private void switchToTheRightHandle() {

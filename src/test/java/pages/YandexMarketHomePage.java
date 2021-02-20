@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class YandexMarketHomePage extends PageObject {
+
     public YandexMarketHomePage(WebDriver driver) {
         super(driver);
     }
@@ -13,15 +14,14 @@ public class YandexMarketHomePage extends PageObject {
     @FindBy(linkText = "Войти")
     private WebElement loginButton;
 
-    @FindBy(xpath = "/html/body/div[3]/div[3]/noindex/div/div/div[2]/div[1]/div/button/span/div/div")
+    @FindBy(xpath = "//div[contains(text(),'Компьютерная техника')]")
     private WebElement electronicButton;
 
-    @FindBy(xpath = "//a[contains(text(),'Игрушки и игры')]")
-    private WebElement gemeAndGames;
+    @FindBy(xpath = "//span[contains(text(),'Ноутбук ASUS')]")
+    private WebElement laptop;
 
-
-    public void clickGameAndGamesButton() {
-        gemeAndGames.click();
+    public void choosingALaptop() {
+        laptop.click();
     }
 
     public void clickElectronicButton() {
@@ -32,8 +32,8 @@ public class YandexMarketHomePage extends PageObject {
         loginButton.click();
     }
 
-    public String findСityMinsk(){
-        return driver.findElement(By.xpath("//div[contains(text(),'В Минск мы пока не доставляем')]")).getText();
+    public String findСityMoskau() {
+        return driver.findElement(By.xpath("//span[contains(text(),'Москва')]")).getText();
     }
 
 
