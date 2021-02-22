@@ -20,8 +20,13 @@ public class YandexMarketOrder extends PageObject {
     @FindBy(xpath = "//div[@class='b_2ll3z2LP8N b_3FXWn4lKOO']//span[contains(text(),'+')]")
     private WebElement addNumberOfItemsOfGoods;
 
-    public void addGoods(){
-        addNumberOfItemsOfGoods.click();
+    public void addGoods(int quantity){
+        int i = 1;
+        while (i < quantity) {
+            addNumberOfItemsOfGoods.click();
+            i++;
+        }
+
     }
     public void goToCart(){
         goToCartButton.click();
