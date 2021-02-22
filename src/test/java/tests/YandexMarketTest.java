@@ -47,17 +47,17 @@ public class YandexMarketTest extends BaseTest {
 //        assertTrue(authorizedHomePage.isAuthorized());
 //    }
 
-    @Test(description = "Получаем список видимых категории и открываем страницу случайной категории")
-    public void getAllDisplayedCategories() {
-        YandexMarketHomeAuthorizedPage authorizedHomePage = new YandexMarketHomeAuthorizedPage(driver);
-        displayedCategoriesLinks = authorizedHomePage.getDisplayedCategoryLinks();
-        assertTrue(displayedCategoriesLinks.size() > 0);
-        int randomInt = new Random().nextInt(displayedCategoriesLinks.size() - 1);
-        String randomCategoryLink = displayedCategoriesLinks.get(randomInt);
-        driver.get(randomCategoryLink);
-        log.info("Opened a random category page.");
-        assertEquals(driver.getCurrentUrl(), randomCategoryLink);
-    }
+//    @Test(description = "Получаем список видимых категории и открываем страницу случайной категории")
+//    public void getAllDisplayedCategories() {
+//        YandexMarketHomeAuthorizedPage authorizedHomePage = new YandexMarketHomeAuthorizedPage(driver);
+//        displayedCategoriesLinks = authorizedHomePage.getDisplayedCategoryLinks();
+//        assertTrue(displayedCategoriesLinks.size() > 0);
+//        int randomInt = new Random().nextInt(displayedCategoriesLinks.size() - 1);
+//        String randomCategoryLink = displayedCategoriesLinks.get(randomInt);
+//        driver.get(randomCategoryLink);
+//        log.info("Opened a random category page.");
+//        assertEquals(driver.getCurrentUrl(), randomCategoryLink);
+//    }
 //
 //    @Test(description = "Смотрим компьютер в Москве")
 //    public void watchComputersInMoscow() {
@@ -117,23 +117,23 @@ public class YandexMarketTest extends BaseTest {
 //        Assert.assertNotNull(webElementsList);
 //    }
 
-    @Test(description = "Находим sony playstation 5 и делаем скрин")
-    public void findPlaystation5() throws IOException {
-        YandexPlaystationPage playstationPage = new YandexPlaystationPage(driver);
-        YandexMarketHomePage homePage = new YandexMarketHomePage(driver);
-        homePage.searchSony5();
-        log.info("Looking PlayStation 5.");
-        homePage.clickSubmitButton();
-        homePage.clickSony5();
-        switchToTheRightHandle();
-        playstationPage.sonyPictureClick();
-        log.info("Opening the photo of the model.");
-        ScreenProperties.makeScreenPage(driver);
-        log.info("Making a screenshot of the model.");
-        String actualName = playstationPage.getNameProduct();
-        String expectedName = "Игровая приставка Sony PlayStation 5 825 Гб";
-        assertEquals(expectedName, actualName);
-    }
+//    @Test(description = "Находим sony playstation 5 и делаем скрин")
+//    public void findPlaystation5() throws IOException {
+//        YandexPlaystationPage playstationPage = new YandexPlaystationPage(driver);
+//        YandexMarketHomePage homePage = new YandexMarketHomePage(driver);
+//        homePage.searchSony5();
+//        log.info("Looking PlayStation 5.");
+//        homePage.clickSubmitButton();
+//        homePage.clickSony5();
+//        switchToTheRightHandle();
+//        playstationPage.sonyPictureClick();
+//        log.info("Opening the photo of the model.");
+//        ScreenProperties.makeScreenPage(driver);
+//        log.info("Making a screenshot of the model.");
+//        String actualName = playstationPage.getNameProduct();
+//        String expectedName = "Игровая приставка Sony PlayStation 5 825 Гб";
+//        assertEquals(expectedName, actualName);
+//    }
 
     private void switchToTheRightHandle() {
         List<String> tabHandles = new ArrayList<String>(driver.getWindowHandles());
