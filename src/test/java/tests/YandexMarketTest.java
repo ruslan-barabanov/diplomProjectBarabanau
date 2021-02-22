@@ -31,8 +31,8 @@ public class YandexMarketTest extends BaseTest {
         System.out.println(driver.getPageSource());
     }
 
-    @Test(description = "Авторизуемся")
-    public void signIn() {
+//    @Test(description = "Авторизуемся")
+//    public void signIn() {
 //        YandexMarketHomePage homePage = new YandexMarketHomePage(driver);
 //        homePage.clickLoginButton();
 //        switchToTheRightHandle();
@@ -47,7 +47,7 @@ public class YandexMarketTest extends BaseTest {
 //        log.info("Password entered.");
 //        YandexMarketHomeAuthorizedPage authorizedHomePage = new YandexMarketHomeAuthorizedPage(driver);
 //        assertTrue(authorizedHomePage.isAuthorized());
-    }
+//    }
 
     @Test(description = "Получаем список видимых категории и открываем страницу случайной категории")
     public void getAllDisplayedCategories() {

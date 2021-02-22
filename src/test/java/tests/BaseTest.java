@@ -13,6 +13,7 @@ public class BaseTest {
     public WebDriver driver;
     private final Properties properties = PathsProperties.readFile();
     private final String site = properties.getProperty("site");
+//    private final String chromeDriver = properties.getProperty("site");
 
     @BeforeMethod
     public void startTest() {
