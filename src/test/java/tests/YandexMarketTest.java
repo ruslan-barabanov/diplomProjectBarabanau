@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.logging.Logger;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 
 public class YandexMarketTest extends BaseTest {
@@ -46,17 +47,17 @@ public class YandexMarketTest extends BaseTest {
 //        assertTrue(authorizedHomePage.isAuthorized());
 //    }
 
-//    @Test(description = "Получаем список видимых категории и открываем страницу случайной категории")
-//    public void getAllDisplayedCategories() {
-//        YandexMarketHomeAuthorizedPage authorizedHomePage = new YandexMarketHomeAuthorizedPage(driver);
-//        displayedCategoriesLinks = authorizedHomePage.getDisplayedCategoryLinks();
-//        assertTrue(displayedCategoriesLinks.size() > 0);
-//        int randomInt = new Random().nextInt(displayedCategoriesLinks.size() - 1);
-//        String randomCategoryLink = displayedCategoriesLinks.get(randomInt);
-//        driver.get(randomCategoryLink);
-//        log.info("Opened a random category page.");
-//        assertEquals(driver.getCurrentUrl(), randomCategoryLink);
-//    }
+    @Test(description = "Получаем список видимых категории и открываем страницу случайной категории")
+    public void getAllDisplayedCategories() {
+        YandexMarketHomeAuthorizedPage authorizedHomePage = new YandexMarketHomeAuthorizedPage(driver);
+        displayedCategoriesLinks = authorizedHomePage.getDisplayedCategoryLinks();
+        assertTrue(displayedCategoriesLinks.size() > 0);
+        int randomInt = new Random().nextInt(displayedCategoriesLinks.size() - 1);
+        String randomCategoryLink = displayedCategoriesLinks.get(randomInt);
+        driver.get(randomCategoryLink);
+        log.info("Opened a random category page.");
+        assertEquals(driver.getCurrentUrl(), randomCategoryLink);
+    }
 //
 //    @Test(description = "Смотрим компьютер в Москве")
 //    public void watchComputersInMoscow() {
