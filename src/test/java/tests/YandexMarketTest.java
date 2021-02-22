@@ -9,8 +9,9 @@ import utils.ScreenProperties;
 import java.io.IOException;
 import java.util.*;
 
-import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.AssertJUnit.assertTrue;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+
 
 public class YandexMarketTest extends BaseTest {
 
@@ -25,6 +26,7 @@ public class YandexMarketTest extends BaseTest {
         homePage.clickLoginButton();
         switchToTheRightHandle();
         assertEquals(driver.getTitle(), "Авторизация");
+        System.out.println( driver.getPageSource());
     }
 
     @Test(description = "Авторизуемся")
