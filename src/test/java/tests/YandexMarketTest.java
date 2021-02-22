@@ -6,11 +6,9 @@ import org.testng.annotations.Test;
 import pages.*;
 import utils.PathsProperties;
 import utils.ScreenProperties;
-
 import java.io.IOException;
 import java.util.*;
 import java.util.logging.Logger;
-
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 

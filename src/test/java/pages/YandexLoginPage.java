@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class YandexLoginPage extends PageObject {
+public class YandexLoginPage extends BasePage {
 
     @FindBy(xpath = "//*[@id='passp-field-login']")
     private WebElement loginField;

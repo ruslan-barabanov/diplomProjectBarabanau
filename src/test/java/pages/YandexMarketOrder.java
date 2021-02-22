@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class YandexMarketOrder extends PageObject {
+public class YandexMarketOrder extends BasePage {
     public YandexMarketOrder(WebDriver driver) {
         super(driver);
     }
@@ -28,12 +28,12 @@ public class YandexMarketOrder extends PageObject {
         }
 
     }
-    public void goToCart(){
-        goToCartButton.click();
-    }
+    public void goToCart(){ goToCartButton.click(); }
+
     public void addToCard() {
         addLaptop.click();
     }
+
     public String quantityOfGoods(){
         return quantity.getText();
     }
