@@ -4,10 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import java.util.List;
 
-public class YandexMarketHomePage extends PageObject {
+public class YandexMarketHomePage extends BasePage {
 
     public YandexMarketHomePage(WebDriver driver) {
         super(driver);
@@ -35,21 +34,23 @@ public class YandexMarketHomePage extends PageObject {
             "я приставка')]")
     private WebElement sony;
 
-    public void clickSony5(){
+    public void clickSony5() {
         sony.click();
     }
 
-    public List<WebElement> allIphonePrices(){
+    public List<WebElement> allIphonePrices() {
         return driver.findElements(By.xpath("//span[@data-autotest-currency='₽']"));
     }
-    public void searchAiphone(){
+
+    public void searchAiphone() {
         searchGeneral.sendKeys("айфон");
     }
-    public void searchSony5(){
+
+    public void searchSony5() {
         searchGeneral.sendKeys("Sony PlayStation");
     }
 
-    public void clickSubmitButton(){
+    public void clickSubmitButton() {
         submitButton.click();
     }
 

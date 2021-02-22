@@ -8,7 +8,7 @@ import utils.PathsProperties;
 import utils.ScreenProperties;
 import java.io.IOException;
 import java.util.*;
-
+import java.util.logging.Logger;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -19,6 +19,7 @@ public class YandexMarketTest extends BaseTest {
     private final String login = properties.getProperty("login");
     private final String password = properties.getProperty("password");
     private List<String> displayedCategoriesLinks = new ArrayList<>();
+    private static final Logger log = Logger.getLogger(String.valueOf(YandexMarketTest.class));
 
     @Test(description = "Открываем страницу и преходим на логин страницу")
     public void openLoginPage() {
@@ -26,7 +27,8 @@ public class YandexMarketTest extends BaseTest {
         homePage.clickLoginButton();
         switchToTheRightHandle();
         assertEquals(driver.getTitle(), "Авторизация");
-        System.out.println( driver.getPageSource());
+        log.info("Страница авторизации открыта.");
+        System.out.println(driver.getPageSource());
     }
 
     @Test(description = "Авторизуемся")
@@ -38,9 +40,11 @@ public class YandexMarketTest extends BaseTest {
         assertTrue(loginPage.isInitialized());
         loginPage.enterLogin(login);
         loginPage.clickSignInButton();
+        log.info("Ввели логин.");
         loginPage.enterPassword(password);
         loginPage.clickSignInButton();
         switchToTheRightHandle();
+        log.info("Ввели пароль.");
         YandexMarketHomeAuthorizedPage authorizedHomePage = new YandexMarketHomeAuthorizedPage(driver);
         assertTrue(authorizedHomePage.isAuthorized());
     }
@@ -53,6 +57,7 @@ public class YandexMarketTest extends BaseTest {
         int randomInt = new Random().nextInt(displayedCategoriesLinks.size() - 1);
         String randomCategoryLink = displayedCategoriesLinks.get(randomInt);
         driver.get(randomCategoryLink);
+        log.info("Открыли страницу случайной категории.");
         assertEquals(driver.getCurrentUrl(), randomCategoryLink);
     }
 
@@ -61,6 +66,7 @@ public class YandexMarketTest extends BaseTest {
         YandexMarketHomePage homePage = new YandexMarketHomePage(driver);
         homePage.clickElectronicButton();
         String moskau = homePage.findСityMoskau();
+        log.info("Открыта страница с городом Москва.");
         assertEquals(moskau, "Москва");
     }
 
@@ -70,10 +76,13 @@ public class YandexMarketTest extends BaseTest {
         YandexMarketOrder order = new YandexMarketOrder(driver);
         homePage.clickElectronicButton();
         homePage.choosingALaptop();
+        log.info("Выбираем Ноутбук.");
         switchToTheRightHandle();
         order.addToCard();
+        log.info("Добавляем товар в корзину.");
         order.goToCart();
         String actualQuantity = order.quantityOfGoods();
+        log.info("Проверяем, что в корзину добавился 1 товар.");
         assertEquals("1", actualQuantity);
     }
 
@@ -83,15 +92,15 @@ public class YandexMarketTest extends BaseTest {
         YandexMarketOrder order = new YandexMarketOrder(driver);
         homePage.clickElectronicButton();
         homePage.choosingALaptop();
+        log.info("Выбираем Ноутбук.");
         switchToTheRightHandle();
         order.addToCard();
-        int i = 1;
-        while (i < 5) {
-            order.addGoods();
-            i++;
-        }
+        log.info("Добавляем товар в корзину.");
+        order.addGoods(5);
+        log.info("Добавляем товар 5 раз в корзину");
         order.goToCart();
         String actualQuantity = order.quantityOfGoods();
+        log.info("Проверяем, что в корзину добавилось 5 товаров.");
         assertEquals("5", actualQuantity);
     }
 
@@ -99,13 +108,14 @@ public class YandexMarketTest extends BaseTest {
     public void findTheMostExpensivePhone() {
         YandexMarketHomePage homePage = new YandexMarketHomePage(driver);
         homePage.searchAiphone();
+        log.info("Ищем айфон.");
         homePage.clickSubmitButton();
         Set<String> webElementsList = new HashSet<>();
         List<WebElement> list = homePage.allIphonePrices();
         for (WebElement element : list) {
             webElementsList.add(element.getText());
         }
-        System.out.println(Collections.max(webElementsList));
+        log.info("Стоимость самого дорогого айфона в Москве = " + Collections.max(webElementsList));
         Assert.assertNotNull(webElementsList);
     }
 
@@ -114,11 +124,14 @@ public class YandexMarketTest extends BaseTest {
         YandexPlaystationPage playstationPage = new YandexPlaystationPage(driver);
         YandexMarketHomePage homePage = new YandexMarketHomePage(driver);
         homePage.searchSony5();
+        log.info("Ищем PlayStation 5.");
         homePage.clickSubmitButton();
         homePage.clickSony5();
         switchToTheRightHandle();
         playstationPage.sonyPictureClick();
+        log.info("Открываем фото модели.");
         ScreenProperties.makeScreenPage(driver);
+        log.info("Делаем скрин модели.");
         String actualName = playstationPage.getNameProduct();
         String expectedName = "Игровая приставка Sony PlayStation 5 825 Гб";
         assertEquals(expectedName, actualName);
