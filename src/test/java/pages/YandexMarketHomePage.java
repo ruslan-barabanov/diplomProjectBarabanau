@@ -19,7 +19,7 @@ public class YandexMarketHomePage extends PageObject {
     @FindBy(xpath = "//div[contains(text(),'Компьютерная техника')]")
     private WebElement electronicButton;
 
-    @FindBy(xpath = "//span[contains(text(),'Ноутбук ASUS')]")
+    @FindBy(xpath = "//span[contains(text(),'Ноутбук ')]")
     private WebElement laptop;
 
     @FindBy(xpath = "//input[@id='header-search']")
@@ -38,6 +38,7 @@ public class YandexMarketHomePage extends PageObject {
     public void clickSony5(){
         sony.click();
     }
+
     public List<WebElement> allIphonePrices(){
         return driver.findElements(By.xpath("//span[@data-autotest-currency='₽']"));
     }
